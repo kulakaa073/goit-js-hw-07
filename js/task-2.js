@@ -30,32 +30,22 @@ const images = [
   <img src="img/image-1.jpg" alt="Image 1"/>
 </li> */
 
-const gallery = document.querySelector(".gallery"); //Find "gallery" item
-gallery.style.display = "flex"; //Add some styles
-gallery.style.flexWrap = "wrap";
-gallery.style.gap = "48px 24px";
-gallery.style.maxWidth = "1128px";
-gallery.style.margin = "0 auto";
+//All styles were moved to css
 
-const test = [];
-//Is this counts as one adding operation? Dunno, need clarification
+const gallery = document.querySelector(".gallery"); //Find "gallery" item
+
+const temp = document.createElement("ul");
 images.forEach(image => { //Go through all elements in image list
   const li = document.createElement("li");  //Create "li" element
   li.classList.add("image");  //Add "image" CSS class
-  li.style.display = "flex";  //Add some styles
-  li.style.alignItems = "center";
-  li.style.justifyContent = "center";
-  li.style.maxWidth = "300px";
-  li.style.maxHeight = "360px";
 
   const img = document.createElement("img");  //Create "img" element
   img.src = image.url;  //Set attributes
   img.alt = image.alt;
-  img.style.width = "100%";  //Add some styles
-  img.style.height = "100%";
-  img.style.display = "box";
   
   li.append(img);  //Add "img" in to "li"
-
-  gallery.append(li);  //Add "li" to "gallery"
+  
+  temp.append(li); //Add "li" to temp ul
 });
+
+gallery.innerHTML = temp.innerHTML; //replace gallery contents with temp html
