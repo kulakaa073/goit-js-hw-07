@@ -34,18 +34,12 @@ const images = [
 
 const gallery = document.querySelector(".gallery"); //Find "gallery" item
 
-const temp = document.createElement("ul");
-images.forEach(image => { //Go through all elements in image list
-  const li = document.createElement("li");  //Create "li" element
-  li.classList.add("image");  //Add "image" CSS class
+const newElementsCollection = [];
+images.forEach(image => //Go through all elements in image list
+  newElementsCollection.push( //Push new elements to be added to an array
+    `<li class="image">
+      <img src="${image.url}" alt="${image.alt}"/>
+    </li>`
+  ));
 
-  const img = document.createElement("img");  //Create "img" element
-  img.src = image.url;  //Set attributes
-  img.alt = image.alt;
-  
-  li.append(img);  //Add "img" in to "li"
-  
-  temp.append(li); //Add "li" to temp ul
-});
-
-gallery.innerHTML = temp.innerHTML; //replace gallery contents with temp html
+gallery.insertAdjacentHTML("beforeend", newElementsCollection.join("")); //insert new HTML contents from gathered collection
